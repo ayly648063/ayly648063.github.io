@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ayly648063.github.io</id>
     <title>编码笔记</title>
-    <updated>2021-02-16T14:07:48.618Z</updated>
+    <updated>2021-02-18T11:36:18.544Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ayly648063.github.io"/>
     <link rel="self" href="https://ayly648063.github.io/atom.xml"/>
@@ -10,6 +10,108 @@
     <logo>https://ayly648063.github.io/images/avatar.png</logo>
     <icon>https://ayly648063.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, 编码笔记</rights>
+    <entry>
+        <title type="html"><![CDATA[webpack标准配置]]></title>
+        <id>https://ayly648063.github.io/post/webpack-biao-zhun-pei-zhi/</id>
+        <link href="https://ayly648063.github.io/post/webpack-biao-zhun-pei-zhi/">
+        </link>
+        <updated>2021-02-18T11:26:19.000Z</updated>
+        <summary type="html"><![CDATA[<p>npm init -y  #初始化一个package.json<br>
+npm install webpack webpack-cli -D    #本地安装最新版<code>webpack</code>,<code>webpack-cli</code><br>
+npm info webpack   #查看webpack历史版本信息（当要安装特定版本时）</p>
+<figure data-type="image" tabindex="1"><img src="https://ayly648063.github.io/post-images/1613648048275.png" alt="" loading="lazy"></figure>
+]]></summary>
+        <content type="html"><![CDATA[<p>npm init -y  #初始化一个package.json<br>
+npm install webpack webpack-cli -D    #本地安装最新版<code>webpack</code>,<code>webpack-cli</code><br>
+npm info webpack   #查看webpack历史版本信息（当要安装特定版本时）</p>
+<figure data-type="image" tabindex="1"><img src="https://ayly648063.github.io/post-images/1613648048275.png" alt="" loading="lazy"></figure>
+<!-- more -->
+<p><strong>webpack.config.js配置</strong></p>
+<!-- more -->
+<p>const path = require('path');<br>
+const HtmlWebpackPlugin = require('html-webpack-plugin');//自动生成html模板，以便在多个入口文件时，不用手动修改引入的js<br>
+const glob = require('glob-all')<br>
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')<br>
+const PurgecssPlugin = require('purgecss-webpack-plugin')</p>
+<p>module.exports = {<br>
+entry: './src/js/index.js',<br>
+plugins: [//配置html-webpack-plugin<br>
+new HtmlWebpackPlugin({<br>
+title: 'Output Management'<br>
+}),<br>
+new MiniCssExtractPlugin({<br>
+filename: 'dist/[name].[chunkhash:8].css',<br>
+}),<br>
+new PurgecssPlugin({<br>
+paths: glob.sync([<br>
+path.join(__dirname, './index.html'),<br>
+path.join(__dirname, './src/js/index.js')<br>
+// path.join(__dirname, './src/*.ts'),<br>
+],{<br>
+nodir: true<br>
+})<br>
+})<br>
+],<br>
+output: {<br>
+publicPath:'./',<br>
+filename: 'bundle.js',//打包后文件的名字<br>
+path: path.resolve(__dirname, 'dist'),//打包后文件的输出目录<br>
+},<br>
+module: {<br>
+rules: [<br>
+{//打包css文件(可以用import在js中引入css文件)<br>
+test: /.css<span class='katex-error' title='ParseError: KaTeX parse error: Expected &#039;EOF&#039;, got &#039;}&#039; at position 172: … ]
+            }̲,
+            {…'>/,
+                use: [MiniCssExtractPlugin.loader,
+                    // &#039;style-loader&#039;,//css压缩
+                    &#039;css-loader&#039;//去除多余css
+               ]
+            },
+            {//加载图片(js或css中引入图片时)
+                test: /\.(png|svg|jpg|gif)</span>/,<br>
+use: [<br>
+{<br>
+loader: 'file-loader',<br>
+options:{<br>
+name: '[path][name].[ext]',//配置自定义文件模板<br>
+outputPath: '.',//配置打包后的输出目录(.代表在dist目录中生成)<br>
+}<br>
+}<br>
+]<br>
+},<br>
+{//加载字体<br>
+test: /.(woff|woff2|eot|ttf|otf)<span class='katex-error' title='ParseError: KaTeX parse error: Expected &#039;EOF&#039;, got &#039;}&#039; at position 383: … ]
+            }̲,
+            {…'>/,
+                use: [
+                    // &#039;file-loader&#039;
+                    {
+                        loader:&#039;file-loader&#039;,
+                        options:{
+                            name: &#039;[path][name].[ext]&#039;,//配置自定义文件模板
+                            outputPath: &#039;.&#039;,//配置打包后的输出目录(.代表在dist目录中生成)
+                        }
+                    }
+                ]
+            },
+            {//加载数据之csv与tsv
+                test: /\.(csv|tsv)</span>/,<br>
+use: [<br>
+'csv-loader'<br>
+]<br>
+},<br>
+{//加载数据之xml   json不用配置就可以直接加载<br>
+test: /.xml$/,<br>
+use: [<br>
+'xml-loader'<br>
+]<br>
+}<br>
+]<br>
+}<br>
+};</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Hello Gridea]]></title>
         <id>https://ayly648063.github.io/post/hello-gridea/</id>
